@@ -171,19 +171,46 @@ export const deletePost = (req, res, next) => {
 //@route Post /api/posts
 
  export const createPost = (req, res, next) => {
-    const newPost ={
-      id : posts.length+1,
-      title : req.body.title
-    }
+
+    const newPost = {
+        id: posts.length + 1, // Still using this for now, but remember the earlier discussion
+        title: req.body.title,
+        type: req.body.type,
+        description: req.body.description,
+        location: req.body.location,
+        salary: req.body.salary,
+        company: {
+            name: req.body.company.name,
+            description: req.body.company.description,
+            contactEmail: req.body.company.contactEmail,
+            contactPhone: req.body.company.contactPhone,
+        },
+    };
 
     if (!newPost.title) {
-      const error = new Error('No title')
-        error.status= 400
-        return next(error)
-    }else{
-      posts.push(newPost)
-      res.status(201).json('Created')
-      console.log(newPost);
-      
+        const error = new Error('No title');
+        error.status = 400;
+        return next(error);
+    } else {
+        posts.push(newPost);
+        res.status(201).json(newPost); // Send the newly created job object in the response
+        console.log(newPost);
     }
+
+    
+    // const newPost ={
+    //   id : posts.length+1,
+    //   title : req.body.title
+    // }
+
+    // if (!newPost.title) {
+    //   const error = new Error('No title')
+    //     error.status= 400
+    //     return next(error)
+    // }else{
+    //   posts.push(newPost)
+    //   res.status(201).json('Created')
+    //   console.log(newPost);
+      
+    // }
 }
