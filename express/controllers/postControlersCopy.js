@@ -51,20 +51,18 @@ export const deletePost =async (req, res, next) => {
 //@route Post /api/posts
 export const createPost = async(req, res, next) => {
     try {
-        const newJob = await Jobs.create(req.body)
-        if (newJob) {
-            res.status(201).json(newJob)
-        }else{
-            res.status(500).json('No jobs')
-        }
-        console.log(req.body);
-        console.log(req.body.title);
-        
-        
+        const newJob = await Jobs.create(req.body);
+        res.status(201).json(newJob); // Send the newly created job on success
     } catch (error) {
-        console.log(error);
-        
+        console.error("Error creating job:", error); // Use console.error for errors
+
+        if (error.name === 'ValidationError') {
+            // Handle Mongoose validation errors
+            const messages = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({ message: 'Validation error', errors: messages });
+        } else {
+            // Handle other types of errors (e.g., database errors)
+            res.status(500).json({ message: 'Failed to create job' });
+        }
     }
-
-
-}
+};
