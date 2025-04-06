@@ -116,7 +116,7 @@ export const getPosts = (req, res) => {
 export const getPost = (req, res, next) => {
     //you can use res.send but use res.json
 
-    const id = (req.params.id)
+    const id = parseInt(req.params.id)
 
     //id becomes a string
     console.log(typeof (req.params.id));
@@ -136,7 +136,7 @@ export const getPost = (req, res, next) => {
 //@route Put /api/posts/:id
 export const editPost = (req, res, next) => {
     //
-    const id = (req.params.id)
+    const id = parseInt(req.params.id)
 
 
     const post = posts.find((post) => post.id === id)
@@ -154,7 +154,7 @@ export const editPost = (req, res, next) => {
 // @desc delete a post
 //@route delete /api/posts/:id
 export const deletePost = (req, res, next) => {
-    const id = (req.params.id)
+    const id = parseInt(req.params.id)
     const post = posts.find((post) => post.id === id)
 
     if (!post) {
