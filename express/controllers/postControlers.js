@@ -122,7 +122,7 @@ export const getPost = (req, res, next) => {
     console.log(typeof (req.params.id));
     //
 
-    const post = posts.find((post) => post.id === id)
+    const post = posts.find((post) => post.id == id)
 
     if (!post) {
         const error = new Error(` A Post with the id of ${id} not found`)
@@ -139,7 +139,7 @@ export const editPost = (req, res, next) => {
     const id = parseInt(req.params.id)
 
 
-    const post = posts.find((post) => post.id === id)
+    const post = posts.find((post) => post.id == id)
 
     if (!post) {
         const error = new Error(` A Post with the id of ${id} not found`)
@@ -155,14 +155,14 @@ export const editPost = (req, res, next) => {
 //@route delete /api/posts/:id
 export const deletePost = (req, res, next) => {
     const id = parseInt(req.params.id)
-    const post = posts.find((post) => post.id === id)
+    const post = posts.find((post) => post.id == id)
 
     if (!post) {
         const error = new Error(` A Post with the id of ${id} not found`)
         error.status = 404
         return next(error)
     }
-    posts = posts.filter((post) => post.id !== id)
+    posts = posts.filter((post) => post.id != id)
     res.status(200).json(post)
     console.log(posts);
 }
