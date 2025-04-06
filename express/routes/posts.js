@@ -20,7 +20,7 @@ router.get('/about', (req, res)=>{
 
 
 
-// router.get('/' ,getPosts )
+router.get('/' ,getPosts )
 
 router.get('/:id' , getPost )
 
