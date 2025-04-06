@@ -7,6 +7,9 @@ import logger from './middleware/logger.js'
 import errorHandler from './middleware/error.js'
 import notFound from './middleware/notFound.js'
 import { fileURLToPath } from 'url'
+import connectDB from './config/db.js'
+
+connectDB()
 
 import posts from './routes/posts.js'
 

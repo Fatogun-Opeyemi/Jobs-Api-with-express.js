@@ -2,7 +2,7 @@
 
 import express from 'express'
 import { title } from 'process'
-import {getPosts, getPost, editPost, deletePost, createPost} from '../controllers/postControlers.js'
+import {getPosts, getPost, editPost, deletePost, createPost} from '../controllers/postControlersCopy.js'
 const router = express.Router()
 
 
