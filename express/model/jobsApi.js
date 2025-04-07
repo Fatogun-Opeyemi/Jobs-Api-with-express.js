@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
-  _id: String,
   title: String,
   type: String,
   description: String,
